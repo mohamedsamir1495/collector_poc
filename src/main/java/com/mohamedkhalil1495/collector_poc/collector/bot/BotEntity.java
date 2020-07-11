@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.*;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,7 +27,8 @@ public class BotEntity implements BaseEntity {
     private String botHubId;
 
     @Column(name = "is_activated")
-    private boolean botHubId;
+    private boolean isActivated;
 
     private boolean error;
+
 }

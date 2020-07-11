@@ -15,8 +15,10 @@ class SeedDatabase {
     @Bean
     CommandLineRunner initDatabase(BotRepository botRepository, BotMapper botMapper) {
         return args -> {
-            log.info("Preloading " + botRepository.save(botMapper.toEntity(
-                    new BotDTO(1, "Bot_Test", "BOTHUB_ID", true, false), false)));
+//            log.info("Preloading " + botRepository.save(botMapper.toEntity(
+//                    new BotDTO(1, "Bot_Test", "BOTHUB_ID", true, false), false)));
+//            log.info("Preloading " + botRepository.save(botMapper.toEntity(
+//                    new BotDTO(1, "Bot_Test", "BOTHUB_ID", true, false), false)));
         };
     }
 }

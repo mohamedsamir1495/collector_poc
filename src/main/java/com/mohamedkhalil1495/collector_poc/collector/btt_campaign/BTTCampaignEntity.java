@@ -31,14 +31,14 @@ public class BTTCampaignEntity implements BaseEntity {
     private int status;
 
     @OneToMany(
-            mappedBy = "rtToolCampaign",
+            mappedBy = "bttCampaign",
             fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
     )
     private Set<BotHubCampaignEntity> botHubCampaigns;
 
     @OneToMany(
-            mappedBy = "rtToolCampaign",
+            mappedBy = "bttCampaign",
             fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
     )
