@@ -1,7 +1,6 @@
 package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
-
 import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +19,8 @@ public class BotHubCampaignDTO implements BaseDto {
     private BTTCampaignDTO bttCampaign;
 
     private String botHubId;
+
+    private boolean status;
 
     private int sentCount;
 

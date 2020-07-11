@@ -30,6 +30,9 @@ public class BotHubCampaignEntity implements BaseEntity  {
     @Column(name = "bot_hub_id")
     private String botHubId;
 
+    @Column(name = "status")
+    private boolean status;
+
     @Column(name = "sent_count")
     private int sentCount;
 

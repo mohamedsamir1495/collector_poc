@@ -23,12 +23,13 @@ public class BotHubCampaignMapper extends ObjectMapper<BotHubCampaignDTO, BotHub
 
         return new BotHubCampaignDTO() {{
             setId(entity.getId());
+            setBotHubId(entity.getBotHubId());
+            setStatus(entity.isStatus());
             setSentCount(entity.getSentCount());
             setDeliveredCount(entity.getDeliveredCount());
             setReadCount(entity.getReadCount());
             setTotalCount(entity.getTotalCount());
             setErrorCount(entity.getErrorCount());
-            setBotHubId(entity.getBotHubId());
             if (eager) {
                 setBttCampaign(bttCampaignMapper.toDto(entity.getBttCampaign(), false));
             }
@@ -40,12 +41,13 @@ public class BotHubCampaignMapper extends ObjectMapper<BotHubCampaignDTO, BotHub
         if (Objects.isNull(dto)) return null;
         BotHubCampaignEntity entity = new BotHubCampaignEntity();
         entity.setId(dto.getId());
+        entity.setBotHubId(dto.getBotHubId());
+        entity.setStatus(dto.isStatus());
         entity.setSentCount(dto.getSentCount());
         entity.setDeliveredCount(dto.getDeliveredCount());
         entity.setReadCount(dto.getReadCount());
         entity.setTotalCount(dto.getTotalCount());
         entity.setErrorCount(dto.getErrorCount());
-        entity.setBotHubId(dto.getBotHubId());
         if (eager) {
             entity.setBttCampaign(bttCampaignMapper.toEntity(dto.getBttCampaign(), false));
         }
