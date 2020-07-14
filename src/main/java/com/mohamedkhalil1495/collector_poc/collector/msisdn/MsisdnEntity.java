@@ -2,17 +2,15 @@ package com.mohamedkhalil1495.collector_poc.collector.msisdn;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseEntity;
 import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Entity
 @Builder
 @Table(name = "msisdn")

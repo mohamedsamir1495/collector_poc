@@ -20,8 +20,6 @@ public class CollectorScheduler extends RouteBuilder {
 
     @Override
     public void configure() {
-        Consumer x = System.out::println;
-        x.accept("Value is :"+value);
         from("quartz://collectorScheduler?cron={{scheduler-routes.collector.cron-expression}}")
                 .routeId(ROUTE_ID)
                 .log("Collector scheduler starting a new cycle")

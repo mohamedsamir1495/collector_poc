@@ -2,15 +2,18 @@ package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
 import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
+
+import javax.persistence.Column;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Builder
 public class BotHubCampaignDTO implements BaseDto {
 
@@ -20,7 +23,8 @@ public class BotHubCampaignDTO implements BaseDto {
 
     private String botHubId;
 
-    private boolean status;
+    private BotHubCampaignStatus status;
+
 
     private int sentCount;
 
@@ -31,4 +35,18 @@ public class BotHubCampaignDTO implements BaseDto {
     private int errorCount;
 
     private int totalCount;
+
+    @Override
+    public String toString() {
+        return "BotHubCampaignDTO{" +
+                "id=" + id +
+                ", botHubId='" + botHubId + '\'' +
+                ", status=" + status +
+                ", sentCount=" + sentCount +
+                ", deliveredCount=" + deliveredCount +
+                ", readCount=" + readCount +
+                ", errorCount=" + errorCount +
+                ", totalCount=" + totalCount +
+                '}';
+    }
 }

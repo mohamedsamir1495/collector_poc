@@ -16,8 +16,7 @@ public class BotMapper extends ObjectMapper<BotDTO, BotEntity> {
             setId(entity.getId());
             setName(entity.getName());
             setBotHubId(entity.getBotHubId());
-            setActivated(entity.isActivated());
-            setError(entity.isError());
+            setStatus(entity.getStatus());
         }};
     }
 
@@ -28,8 +27,7 @@ public class BotMapper extends ObjectMapper<BotDTO, BotEntity> {
         entity.setBotHubId(dto.getBotHubId());
         entity.setId(dto.getId());
         entity.setName(dto.getName());
-        entity.setActivated(dto.isActivated());
-        entity.setError(dto.isError());
+        entity.setStatus(dto.getStatus());
         return entity;
     }
 }

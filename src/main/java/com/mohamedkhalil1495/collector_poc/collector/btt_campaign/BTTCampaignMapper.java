@@ -41,7 +41,11 @@ public class BTTCampaignMapper extends ObjectMapper<BTTCampaignDTO, BTTCampaignE
         BTTCampaignDTO dto = new BTTCampaignDTO();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
-        dto.setStatus(BTTCampaignDTO.Status.values()[entity.getStatus()]);
+        dto.setStatus(entity.getStatus());
+        dto.setStartDate(entity.getStartDate());
+        dto.setEndDate(entity.getEndDate());
+        dto.setTriggerStartTime(entity.getTriggerStartTime());
+        dto.setTriggerEndTime(entity.getTriggerEndTime());
         if (eager) {
             dto.setBot(botMapper.toDto(entity.getBot(), false));
             if (entity.getBotHubCampaigns() == null) {
@@ -61,6 +65,11 @@ public class BTTCampaignMapper extends ObjectMapper<BTTCampaignDTO, BTTCampaignE
                     .collect(Collectors.toList())
             );
         }
+        dto.setTotalMsisdns(entity.getTotalMsisdns());
+        dto.setTotalSent(entity.getTotalSent());
+        dto.setTotalDelivered(entity.getTotalDelivered());
+        dto.setTotalRead(entity.getTotalRead());
+
         return dto;
     }
 
@@ -69,8 +78,11 @@ public class BTTCampaignMapper extends ObjectMapper<BTTCampaignDTO, BTTCampaignE
         BTTCampaignEntity entity = new BTTCampaignEntity();
         entity.setId(dto.getId());
         entity.setName(dto.getName());
-        entity.setStatus(dto.getStatus().ordinal());
-
+        entity.setStatus(dto.getStatus());
+        entity.setStartDate(dto.getStartDate());
+        entity.setEndDate(dto.getEndDate());
+        entity.setTriggerStartTime(dto.getTriggerStartTime());
+        entity.setTriggerEndTime(dto.getTriggerEndTime());
         if (eager) {
             entity.setBot(botMapper.toEntity(dto.getBot(), false));
             if (dto.getBotHubCampaigns() == null) {
@@ -90,6 +102,11 @@ public class BTTCampaignMapper extends ObjectMapper<BTTCampaignDTO, BTTCampaignE
                     .collect(Collectors.toSet())
             );
         }
+
+        entity.setTotalMsisdns(dto.getTotalMsisdns());
+        entity.setTotalSent(dto.getTotalSent());
+        entity.setTotalDelivered(dto.getTotalDelivered());
+        entity.setTotalRead(dto.getTotalRead());
         return entity;
     }
 }

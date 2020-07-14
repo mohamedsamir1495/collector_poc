@@ -2,14 +2,16 @@ package com.mohamedkhalil1495.collector_poc.collector.bot;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Builder
 public class BotDTO implements BaseDto {
 
@@ -19,7 +21,5 @@ public class BotDTO implements BaseDto {
 
     private String botHubId;
 
-    private boolean isActivated;
-
-    private boolean error;
+    private BotStatus status;
 }

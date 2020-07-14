@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface BTTCampaignRepository extends CrudRepository<BTTCampaignEntity, Long> {
 
-    List<BTTCampaignEntity> findAllByStatus(int status);
+    List<BTTCampaignEntity> findAllByStatus(BTTCampaignStatus status);
 }

@@ -2,9 +2,8 @@ package com.mohamedkhalil1495.collector_poc.collector.bot;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseEntity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 
 import javax.persistence.*;
 import java.time.*;
@@ -12,7 +11,8 @@ import java.time.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "bot")
 public class BotEntity implements BaseEntity {
@@ -26,9 +26,7 @@ public class BotEntity implements BaseEntity {
     @Column(name = "bot_id")
     private String botHubId;
 
-    @Column(name = "is_activated")
-    private boolean isActivated;
-
-    private boolean error;
+    @Enumerated(EnumType.STRING)
+    private BotStatus status;
 
 }

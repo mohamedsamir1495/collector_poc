@@ -2,16 +2,18 @@ package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseEntity;
 import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
+
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Builder
 @Entity
 @Table(name = "bot_hub_campaign")
@@ -22,16 +24,17 @@ public class BotHubCampaignEntity implements BaseEntity  {
 
     @ManyToOne(
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH},
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
-    @JoinColumn(name = "campaign_id")
+    @JoinColumn(name = "btt_campaign_id")
     private BTTCampaignEntity bttCampaign;
 
-    @Column(name = "bot_hub_id")
+    @Column(name = "bothub_campaign_id")
     private String botHubId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private boolean status;
+    private BotHubCampaignStatus status;
 
     @Column(name = "sent_count")
     private int sentCount;
@@ -47,4 +50,6 @@ public class BotHubCampaignEntity implements BaseEntity  {
 
     @Column(name = "total_count")
     private int totalCount;
+
+
 }

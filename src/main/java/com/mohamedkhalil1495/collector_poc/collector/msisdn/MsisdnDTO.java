@@ -2,14 +2,13 @@ package com.mohamedkhalil1495.collector_poc.collector.msisdn;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
 import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Builder
 public class MsisdnDTO implements BaseDto {
 
