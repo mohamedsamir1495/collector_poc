@@ -14,6 +14,7 @@ public class UpdateBotHubStatus extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("direct:updatingBotHubCampaignInDatabase")
+                .threads(5,10,"ZZZ")
                 .log("BTT Campaign to be updated: ${body}")
                 .process( exchange ->    exchange.getIn().setBody(botHubCampaignService.markBotHubCampaignWithStatus(
                         exchange.getIn().getBody(BotHubCampaignDTO.class),

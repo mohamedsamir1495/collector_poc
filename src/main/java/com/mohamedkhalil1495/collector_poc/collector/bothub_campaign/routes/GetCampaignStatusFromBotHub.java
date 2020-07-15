@@ -19,7 +19,7 @@ public class GetCampaignStatusFromBotHub  extends RouteBuilder {
                             .setBody(botHubClient.getBotHubCampaignResults(botHubCampaignDTO));
                 })
                 .log("Bothub response ${body}")
-                .to("direct:updatingBotHubCampaignInDatabase");
+                .to("direct:updateCampaignStatusFromBotHubResult");
 
     }
 }
