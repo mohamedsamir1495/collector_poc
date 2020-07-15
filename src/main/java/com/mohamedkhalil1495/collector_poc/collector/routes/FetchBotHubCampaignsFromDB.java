@@ -40,10 +40,10 @@ public class FetchBotHubCampaignsFromDB extends RouteBuilder {
                     return dto.getBttCampaign().getStatus() == evaluatedStatus;
                 })
                 .log("Calling Combo ${body}")
-                .to("direct:callBotHub")
+                .to("direct:updateCampaignStatusFromBotHubResult")
                 .otherwise()
                 .log("Updating database ${body}")
-                .to("direct:updatingBotHubCampaignInDatabase")
+                .to("direct:getCampaignStatusFromBotHub")
                 .endChoice();
 
     }
