@@ -1,4 +1,4 @@
-package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign;
+package com.mohamedkhalil1495.collector_poc.core.bothub_campaign;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +14,7 @@ public interface BotHubCampaignRepository extends CrudRepository<BotHubCampaignE
             "bot_hub_campaign.*\n" +
             "from bot_hub_campaign \n" +
             "inner join btt_campaign on btt_campaign.id = bot_hub_campaign.btt_campaign_id\n" +
-            "inner join bot on  bot.id = btt_campaign.bot_id\n" +
+            "inner join bot on  bot.btt_bot_id = btt_campaign.bot_id\n" +
             "where bot_hub_campaign.status=\"RUNNING\" and bot.status =\"ACTIVATED\" and btt_campaign.status = \"TRIGGERING\"",
             nativeQuery = true)
     List<BotHubCampaignEntity> getAllRunningBotHubCampaignsToCollectTheirBothubResults();

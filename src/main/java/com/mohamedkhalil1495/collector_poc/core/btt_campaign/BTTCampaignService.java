@@ -1,17 +1,12 @@
-package com.mohamedkhalil1495.collector_poc.collector.btt_campaign;
+package com.mohamedkhalil1495.collector_poc.core.btt_campaign;
 
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotMapper;
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotRepository;
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignMapper;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotMapper;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotRepository;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Slf4j

@@ -1,13 +1,10 @@
-package com.mohamedkhalil1495.collector_poc.collector.btt_campaign;
+package com.mohamedkhalil1495.collector_poc.core.btt_campaign;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseEntity;
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotEntity;
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignEntity;
-import com.mohamedkhalil1495.collector_poc.collector.msisdn.MsisdnEntity;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotEntity;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignEntity;
+import com.mohamedkhalil1495.collector_poc.core.msisdn.MsisdnEntity;
 import lombok.*;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDate;

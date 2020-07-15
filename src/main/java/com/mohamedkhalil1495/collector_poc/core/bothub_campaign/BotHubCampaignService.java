@@ -1,8 +1,8 @@
-package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign;
+package com.mohamedkhalil1495.collector_poc.core.bothub_campaign;
 
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotMapper;
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotRepository;
-import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignMapper;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotMapper;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotRepository;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.spring.SpringCamelContext;
 import org.springframework.stereotype.Service;

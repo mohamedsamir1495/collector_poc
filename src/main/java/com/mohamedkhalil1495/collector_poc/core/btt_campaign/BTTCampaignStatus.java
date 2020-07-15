@@ -1,7 +1,7 @@
-package com.mohamedkhalil1495.collector_poc.collector.btt_campaign;
+package com.mohamedkhalil1495.collector_poc.core.btt_campaign;
 
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotDTO;
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotStatus;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotDTO;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotStatus;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

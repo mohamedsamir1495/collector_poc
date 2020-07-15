@@ -1,6 +1,6 @@
 //package com.mohamedkhalil1495.collector_poc.collector.routes;
 //
-//import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignEntity;
+//import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignEntity;
 //import org.apache.camel.builder.RouteBuilder;
 //import org.springframework.stereotype.Component;
 //

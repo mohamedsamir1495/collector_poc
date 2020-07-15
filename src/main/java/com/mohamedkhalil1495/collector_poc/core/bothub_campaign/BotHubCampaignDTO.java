@@ -1,13 +1,9 @@
-package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign;
+package com.mohamedkhalil1495.collector_poc.core.bothub_campaign;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
-import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignDTO;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignDTO;
 
 import lombok.*;
-
-import javax.persistence.Column;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 
 @AllArgsConstructor

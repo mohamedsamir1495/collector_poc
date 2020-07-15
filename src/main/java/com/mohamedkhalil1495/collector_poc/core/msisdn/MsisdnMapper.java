@@ -1,8 +1,8 @@
-package com.mohamedkhalil1495.collector_poc.collector.msisdn;
+package com.mohamedkhalil1495.collector_poc.core.msisdn;
 
 import com.mohamedkhalil1495.collector_poc.annotation.Mapper;
 import com.mohamedkhalil1495.collector_poc.base.ObjectMapper;
-import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignMapper;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper

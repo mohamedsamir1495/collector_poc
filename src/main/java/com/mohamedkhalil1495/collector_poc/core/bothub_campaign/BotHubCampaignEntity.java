@@ -1,14 +1,12 @@
-package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign;
+package com.mohamedkhalil1495.collector_poc.core.bothub_campaign;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseEntity;
-import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignEntity;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignEntity;
 
 import lombok.*;
 
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @AllArgsConstructor
 @NoArgsConstructor

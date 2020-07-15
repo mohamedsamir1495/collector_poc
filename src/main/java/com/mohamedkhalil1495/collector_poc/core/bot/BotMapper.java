@@ -1,4 +1,4 @@
-package com.mohamedkhalil1495.collector_poc.collector.bot;
+package com.mohamedkhalil1495.collector_poc.core.bot;
 
 import com.mohamedkhalil1495.collector_poc.annotation.Mapper;
 import com.mohamedkhalil1495.collector_poc.base.ObjectMapper;

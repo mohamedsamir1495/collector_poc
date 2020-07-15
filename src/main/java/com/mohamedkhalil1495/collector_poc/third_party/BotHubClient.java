@@ -1,6 +1,6 @@
 package com.mohamedkhalil1495.collector_poc.third_party;
 
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignDTO;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignDTO;
 
 import org.springframework.stereotype.Component;
 

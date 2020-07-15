@@ -1,11 +1,8 @@
-package com.mohamedkhalil1495.collector_poc.collector.bot;
+package com.mohamedkhalil1495.collector_poc.core.bot;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
 
 import lombok.*;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 
 @AllArgsConstructor

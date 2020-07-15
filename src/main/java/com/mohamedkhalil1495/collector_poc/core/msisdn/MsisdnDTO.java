@@ -1,7 +1,7 @@
-package com.mohamedkhalil1495.collector_poc.collector.msisdn;
+package com.mohamedkhalil1495.collector_poc.core.msisdn;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
-import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignDTO;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignDTO;
 import lombok.*;
 
 

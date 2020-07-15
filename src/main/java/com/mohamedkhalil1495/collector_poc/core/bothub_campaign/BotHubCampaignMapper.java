@@ -1,8 +1,8 @@
-package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign;
+package com.mohamedkhalil1495.collector_poc.core.bothub_campaign;
 
 import com.mohamedkhalil1495.collector_poc.annotation.Mapper;
 import com.mohamedkhalil1495.collector_poc.base.ObjectMapper;
-import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignMapper;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;

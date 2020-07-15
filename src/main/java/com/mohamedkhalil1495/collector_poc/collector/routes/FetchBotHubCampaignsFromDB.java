@@ -1,10 +1,10 @@
 package com.mohamedkhalil1495.collector_poc.collector.routes;
 
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignDTO;
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignRepository;
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignService;
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignStatus;
-import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignStatus;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignDTO;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignRepository;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignService;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignStatus;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignStatus;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,7 +39,7 @@ public class FetchBotHubCampaignsFromDB extends RouteBuilder {
                     log.info("dto evaluated btt campaign status" + evaluatedStatus);
                     return dto.getBttCampaign().getStatus() == evaluatedStatus;
                 })
-                .log("Calling Combo ${body}")
+                .log("Calling BotHub ${body}")
                 .to("direct:getCampaignStatusFromBotHub")
                 .otherwise()
                 .log("Updating database ${body}")

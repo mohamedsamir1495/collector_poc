@@ -1,7 +1,7 @@
-package com.mohamedkhalil1495.collector_poc.collector.msisdn;
+package com.mohamedkhalil1495.collector_poc.core.msisdn;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseEntity;
-import com.mohamedkhalil1495.collector_poc.collector.btt_campaign.BTTCampaignEntity;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignEntity;
 import lombok.*;
 
 import javax.persistence.*;

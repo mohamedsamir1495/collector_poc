@@ -13,8 +13,13 @@ spring:
 camel:
   springboot:
     main-run-controller: true
+
 scheduler-routes:
   collector:
     id: CollectorSchedulerRoute
     cron-expression: 0/5 * * ? * * *
     thread-pool: 10
+
+BOTHUB:
+  COLLECT_CAMPAIGN_RESULTS:
+    CONCURRENT_REQUEST_LIMIT: 5

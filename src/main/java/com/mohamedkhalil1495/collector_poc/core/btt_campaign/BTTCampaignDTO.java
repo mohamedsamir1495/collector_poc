@@ -1,18 +1,15 @@
-package com.mohamedkhalil1495.collector_poc.collector.btt_campaign;
+package com.mohamedkhalil1495.collector_poc.core.btt_campaign;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
 
 
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotDTO;
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignDTO;
-import com.mohamedkhalil1495.collector_poc.collector.msisdn.MsisdnDTO;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotDTO;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignDTO;
+import com.mohamedkhalil1495.collector_poc.core.msisdn.MsisdnDTO;
 
 import lombok.*;
-import org.apache.camel.builder.RouteBuilder;
-import org.springframework.scheduling.annotation.Scheduled;
 
 
-import javax.persistence.Column;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;

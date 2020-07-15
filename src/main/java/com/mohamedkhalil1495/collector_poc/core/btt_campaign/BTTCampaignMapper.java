@@ -1,10 +1,10 @@
-package com.mohamedkhalil1495.collector_poc.collector.btt_campaign;
+package com.mohamedkhalil1495.collector_poc.core.btt_campaign;
 
 import com.mohamedkhalil1495.collector_poc.annotation.Mapper;
 import com.mohamedkhalil1495.collector_poc.base.ObjectMapper;
-import com.mohamedkhalil1495.collector_poc.collector.bot.BotMapper;
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignMapper;
-import com.mohamedkhalil1495.collector_poc.collector.msisdn.MsisdnMapper;
+import com.mohamedkhalil1495.collector_poc.core.bot.BotMapper;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignMapper;
+import com.mohamedkhalil1495.collector_poc.core.msisdn.MsisdnMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;

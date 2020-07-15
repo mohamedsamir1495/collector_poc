@@ -1,7 +1,7 @@
-package com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.routes;
+package com.mohamedkhalil1495.collector_poc.core.bothub_campaign.routes;
 
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignDTO;
-import com.mohamedkhalil1495.collector_poc.collector.bothub_campaign.BotHubCampaignService;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignDTO;
+import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignService;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
