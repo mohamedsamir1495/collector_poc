@@ -36,6 +36,27 @@ public class BotHubCampaignMapper extends ObjectMapper<BotHubCampaignDTO, BotHub
         }};
     }
 
+    public BotHubCampaignDTO toSpecialDto(BotHubCampaignEntity entity,
+                                          boolean eagerLoadBot,
+                                          boolean eagerLoadMsisdns,
+                                          boolean eagerLoadBotHubCampaigns) {
+        if (Objects.isNull(entity)) return null;
+
+        return new BotHubCampaignDTO() {{
+            setId(entity.getId());
+            setBotHubId(entity.getBotHubId());
+            setStatus(entity.getStatus());
+            setSentCount(entity.getSentCount());
+            setDeliveredCount(entity.getDeliveredCount());
+            setReadCount(entity.getReadCount());
+            setTotalCount(entity.getTotalCount());
+            setErrorCount(entity.getErrorCount());
+            if (eagerLoadBot || eagerLoadMsisdns || eagerLoadBotHubCampaigns) {
+                setBttCampaign(bttCampaignMapper.toSpecialDto(entity.getBttCampaign(), eagerLoadBot, eagerLoadMsisdns, eagerLoadBotHubCampaigns));
+            }
+        }};
+    }
+
     @Override
     public BotHubCampaignEntity toEntity(BotHubCampaignDTO dto, boolean eager) {
         if (Objects.isNull(dto)) return null;

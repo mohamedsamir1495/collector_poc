@@ -62,7 +62,7 @@ public class BTTCampaignEntity implements BaseEntity {
 
     @OneToMany(
             mappedBy = "bttCampaign",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
     )
     private Set<BotHubCampaignEntity> botHubCampaigns;

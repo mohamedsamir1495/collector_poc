@@ -8,7 +8,11 @@ import org.apache.camel.model.RouteDefinition;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class BTTCampaignUtils {
+public class BTTCampaignUtils extends RouteBuilder {
 
 
+    @Override
+    public void configure() throws Exception {
+
+    }
 }
