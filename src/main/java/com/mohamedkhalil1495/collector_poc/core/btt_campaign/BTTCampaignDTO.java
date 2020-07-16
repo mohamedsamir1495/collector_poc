@@ -1,14 +1,10 @@
 package com.mohamedkhalil1495.collector_poc.core.btt_campaign;
 
 import com.mohamedkhalil1495.collector_poc.base.BaseDto;
-
-
 import com.mohamedkhalil1495.collector_poc.core.bot.BotDTO;
 import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignDTO;
 import com.mohamedkhalil1495.collector_poc.core.msisdn.MsisdnDTO;
-
 import lombok.*;
-
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -50,6 +46,8 @@ public class BTTCampaignDTO implements BaseDto {
 
     private int totalRead;
 
+    private int totalError;
+
     @Override
     public String toString() {
         return "BTTCampaignDTO{" +
@@ -66,6 +64,7 @@ public class BTTCampaignDTO implements BaseDto {
                 ", totalSent=" + totalSent +
                 ", totalDelivered=" + totalDelivered +
                 ", totalRead=" + totalRead +
+                ", totalError=" + totalError +
                 '}';
     }
 }

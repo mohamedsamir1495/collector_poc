@@ -20,7 +20,7 @@ public enum BTTCampaignStatus {
         if (campaignBot.getStatus() == BotStatus.DEACTIVATED)
             return BTTCampaignStatus.BOT_DEACTIVATED;
 
-        if (campaignStatus == BTTCampaignStatus.FINISHED)
+        if (isBTTCampaignFinished(bttCampaignDTO))
             return BTTCampaignStatus.FINISHED;
 
         if (bttCampaignDTO.getStatus() == BTTCampaignStatus.STOPPED)
@@ -29,16 +29,32 @@ public enum BTTCampaignStatus {
         if (isBTTCampaignNotStarted(bttCampaignDTO))
             return BTTCampaignStatus.NOT_STARTED;
 
-        if(isBTTCampaignTriggering(bttCampaignDTO))
+        if (isBTTCampaignTriggering(bttCampaignDTO))
             return BTTCampaignStatus.TRIGGERING;
 
-        if(isBTTCampaignRunning(bttCampaignDTO))
+        if (isBTTCampaignRunning(bttCampaignDTO))
             return BTTCampaignStatus.RUNNING;
 
         throw new IllegalStateException("BTT Status unknown from its current data");
     }
 
-    ;
+    private static boolean isBTTCampaignFinished(BTTCampaignDTO bttCampaignDTO) {
+        int total = bttCampaignDTO.getTotalMsisdns();
+        int read = bttCampaignDTO.getTotalRead();
+        int error = bttCampaignDTO.getTotalError();
+
+        LocalDate dateTo = bttCampaignDTO.getEndDate();
+        LocalTime timeTo = bttCampaignDTO.getTriggerEndTime();
+
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+
+        boolean isCurrentDateGreaterThanDateTo = currentDate.isAfter(dateTo);
+        boolean isCurrentDateEqualToDateTo = currentDate.isEqual(dateTo);
+        boolean isCurrentTimeGreaterThanTimeTo = currentTime.isAfter(timeTo);
+
+        return total == read + error || total == error || isCurrentDateGreaterThanDateTo || (isCurrentDateEqualToDateTo && isCurrentTimeGreaterThanTimeTo);
+    }
 
     private static boolean isBTTCampaignNotStarted(BTTCampaignDTO bttCampaignDTO) {
         LocalDate dateFrom = bttCampaignDTO.getStartDate();

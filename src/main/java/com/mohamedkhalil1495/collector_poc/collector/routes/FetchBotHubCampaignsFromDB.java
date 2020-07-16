@@ -1,9 +1,9 @@
 package com.mohamedkhalil1495.collector_poc.collector.routes;
 
-import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignDTO;
 import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignRepository;
 import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignService;
-import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignStatus;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignDTO;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignService;
 import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignStatus;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,9 @@ public class FetchBotHubCampaignsFromDB extends RouteBuilder {
     @Autowired
     BotHubCampaignService botHubCampaignService;
 
+    @Autowired
+    BTTCampaignService bttCampaignService;
+
     @Override
     public void configure() {
 
@@ -28,22 +31,26 @@ public class FetchBotHubCampaignsFromDB extends RouteBuilder {
                 .log("fetching campaigns from Db ya walaaa !!!")
                 .process(exchange -> exchange
                         .getIn()
-                        .setBody(botHubCampaignService.getAllBotHubCampaignsByStatus(BotHubCampaignStatus.RUNNING)))
+                        .setBody(bttCampaignService.fetchBTTCampaignsFromDataBaseByStatusToCheckTheirBotHubResults(BTTCampaignStatus.TRIGGERING)))
+                .log("Fetch Btt Campaigns ${body}")
                 .split(body())
                 .log("Campaign fetched !!!")
-                .choice()
-                .when(exchange -> {
-                    BotHubCampaignDTO dto = exchange.getIn().getBody(BotHubCampaignDTO.class);
-                    log.info("dto original btt campaign status" + dto.getBttCampaign().getStatus());
-                    BTTCampaignStatus evaluatedStatus = BTTCampaignStatus.evaluateCampaignStatus(dto.getBttCampaign());
+                .process(exchange -> {
+                    BTTCampaignDTO dto = exchange.getIn().getBody(BTTCampaignDTO.class);
+                    log.info("dto original btt campaign status" + dto.getStatus());
+                    BTTCampaignStatus evaluatedStatus = BTTCampaignStatus.evaluateCampaignStatus(dto);
                     log.info("dto evaluated btt campaign status" + evaluatedStatus);
-                    return dto.getBttCampaign().getStatus() == evaluatedStatus;
+                    exchange.getIn().setHeader("EVALUATED_BTT_CAMPAIGN", evaluatedStatus);
                 })
+                .choice()
+                .when(header("EVALUATED_BTT_CAMPAIGN").isEqualTo(BTTCampaignStatus.FINISHED))
+                .log("Updating database ${body}")
+                .to("direct:markBTTCampaignWithStatusFinished")
+                .when(header("EVALUATED_BTT_CAMPAIGN").isEqualTo(BTTCampaignStatus.TRIGGERING))
+                .process(exchange -> exchange.getIn().setBody(exchange.getIn().getBody(BTTCampaignDTO.class).getBotHubCampaigns()))
+                .split(body())
                 .log("Calling BotHub ${body}")
                 .to("direct:getCampaignStatusFromBotHub")
-                .otherwise()
-                .log("Updating database ${body}")
-                .to("direct:updatingBotHubCampaignInDatabase")
                 .endChoice();
 
     }

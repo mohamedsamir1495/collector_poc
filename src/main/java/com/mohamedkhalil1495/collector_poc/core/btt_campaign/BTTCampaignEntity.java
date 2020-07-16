@@ -5,6 +5,8 @@ import com.mohamedkhalil1495.collector_poc.core.bot.BotEntity;
 import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignEntity;
 import com.mohamedkhalil1495.collector_poc.core.msisdn.MsisdnEntity;
 import lombok.*;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,7 +17,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "btt_campaign")
 public class BTTCampaignEntity implements BaseEntity {
@@ -46,22 +47,26 @@ public class BTTCampaignEntity implements BaseEntity {
     private LocalTime triggerEndTime;
 
     @Column(name = "total_msisdns")
-    private int totalMsisdns;
+    private Integer totalMsisdns;
 
     @Column(name = "total_sent")
-    private int totalSent;
+    private Integer totalSent;
 
     @Column(name = "total_delivered")
-    private int totalDelivered;
+    private Integer totalDelivered;
 
     @Column(name = "total_read")
-    private int totalRead;
+    private Integer totalRead;
+
+    @Column(name = "total_error")
+    private Integer totalError;
 
     @OneToMany(
             mappedBy = "bttCampaign",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
     )
+    @NotFound(action= NotFoundAction.IGNORE)
     private Set<BotHubCampaignEntity> botHubCampaigns;
 
     @OneToMany(
@@ -69,5 +74,26 @@ public class BTTCampaignEntity implements BaseEntity {
             fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
     )
+    @NotFound(action= NotFoundAction.IGNORE)
     private Set<MsisdnEntity> msisdns;
+
+    @Override
+    public String toString() {
+        return "BTTCampaignEntity{" +
+                "id=" + id +
+                ", bot=" + bot +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", triggerStartTime=" + triggerStartTime +
+                ", triggerEndTime=" + triggerEndTime +
+                ", totalMsisdns=" + totalMsisdns +
+                ", totalSent=" + totalSent +
+                ", totalDelivered=" + totalDelivered +
+                ", totalRead=" + totalRead +
+                ", botHubCampaigns=" + botHubCampaigns +
+                ", msisdns=" + msisdns +
+                '}';
+    }
 }

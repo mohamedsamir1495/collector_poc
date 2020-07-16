@@ -19,7 +19,7 @@ public class BotEntity implements BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "btt_bot_id")
-    private long id;
+    private Long id;
 
     private String name;
 
