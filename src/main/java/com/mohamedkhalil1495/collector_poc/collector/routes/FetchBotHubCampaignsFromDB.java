@@ -5,9 +5,12 @@ import com.mohamedkhalil1495.collector_poc.core.bothub_campaign.BotHubCampaignSe
 import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignDTO;
 import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignService;
 import com.mohamedkhalil1495.collector_poc.core.btt_campaign.BTTCampaignStatus;
+import com.mohamedkhalil1495.collector_poc.core.btt_campaign.pojo.BTTCampaignsGroup;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class FetchBotHubCampaignsFromDB extends RouteBuilder {
@@ -33,25 +36,41 @@ public class FetchBotHubCampaignsFromDB extends RouteBuilder {
                         .getIn()
                         .setBody(bttCampaignService.fetchBTTCampaignsFromDataBaseByStatusToCheckTheirBotHubResults(BTTCampaignStatus.TRIGGERING)))
                 .log("Fetch Btt Campaigns ${body}")
-                .split(body())
-                .log("Campaign fetched !!!")
-                .process(exchange -> {
-                    BTTCampaignDTO dto = exchange.getIn().getBody(BTTCampaignDTO.class);
-                    log.info("dto original btt campaign status" + dto.getStatus());
-                    BTTCampaignStatus evaluatedStatus = BTTCampaignStatus.evaluateCampaignStatus(dto);
-                    log.info("dto evaluated btt campaign status" + evaluatedStatus);
-                    exchange.getIn().setHeader("EVALUATED_BTT_CAMPAIGN", evaluatedStatus);
+                .process(exchange ->
+                {
+                    List<BTTCampaignDTO> fetchedCampaignsFromDB = exchange.getIn().getBody(List.class);
+                    exchange.getIn()
+                            .setBody(bttCampaignService.separateTriggeredAndFinishedCampaignsIntoTwoGroupsAndDiscardOtherCampaigns(fetchedCampaignsFromDB));
                 })
-                .choice()
-                .when(header("EVALUATED_BTT_CAMPAIGN").isEqualTo(BTTCampaignStatus.FINISHED))
-                .log("Updating database ${body}")
-                .to("direct:markBTTCampaignWithStatusFinished")
-                .when(header("EVALUATED_BTT_CAMPAIGN").isEqualTo(BTTCampaignStatus.TRIGGERING))
-                .process(exchange -> exchange.getIn().setBody(exchange.getIn().getBody(BTTCampaignDTO.class).getBotHubCampaigns()))
+                .log("BTT Campaigns separated to 2 groups !!!")
                 .split(body())
-                .log("Calling BotHub ${body}")
-                .to("direct:getCampaignStatusFromBotHub")
+                .process(exchange -> exchange.getIn().setHeader("BTT_CAMPAIGNS_GROUP_TYPE", exchange.getIn().getBody(BTTCampaignsGroup.class).getStatus()))
+                .log("Group ${body}")
+                .choice()
+                .when(header("BTT_CAMPAIGNS_GROUP_TYPE").isEqualTo(BTTCampaignStatus.FINISHED))
+                .process(exchange -> exchange.getIn().setBody(exchange.getIn().getBody(BTTCampaignsGroup.class).getGroup()))
+                .to("direct:splitBTTCampaignsToSendItIndividuallyToMarkItInDatabaseAsFinished")
+
+                .when(header("BTT_CAMPAIGNS_GROUP_TYPE").isEqualTo(BTTCampaignStatus.TRIGGERING))
+                .process(exchange -> exchange.getIn().setBody(exchange.getIn().getBody(BTTCampaignsGroup.class).getGroup()))
+                .to("direct:shuffleBotHubCampaignIdsBeforeCheckingTheirBotHubResults")
                 .endChoice();
 
+
+        from("direct:splitBTTCampaignsToSendItIndividuallyToMarkItInDatabaseAsFinished")
+                .split(body())
+                .log("Updating database ${body}")
+                .to("direct:markBTTCampaignWithStatusFinished");
+
+        from("direct:shuffleBotHubCampaignIdsBeforeCheckingTheirBotHubResults")
+                .process(exchange ->
+                {
+                    List<BTTCampaignDTO> fetchedTriggeringCampaignsFromDB = exchange.getIn().getBody(List.class);
+                    exchange.getIn()
+                            .setBody(bttCampaignService.shuffleBotHubCampaignsBeforeGettingResultsFromBotHub(fetchedTriggeringCampaignsFromDB));
+                })
+                .split(body())
+                .log("Calling BotHub ${body}")
+                .to("direct:getCampaignStatusFromBotHub");
     }
 }
